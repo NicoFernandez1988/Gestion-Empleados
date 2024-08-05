@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Empleados</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="left-panel">
+        <h2>Empleados</h2>
+        <div class="button-container">
+            <button id="add-employee" class="button"><i class="fa-solid fa-user-plus"></i></button>
+            <button id="delete-employee" class="button"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        <input type="text" id="search" placeholder="Buscar por nombre o apellido">
+        <ul id="employee-list"></ul>
+    </div>
+    <div class="right-panel">
+        <h3>Datos personales</h3>
+        <form id="employee-form">
+            <div class="name-container">
+                <div>
+                    <input type="text" id="nombre" placeholder="Nombre" required>
+                </div>
+                <div>
+                    <input type="text" id="apellido" placeholder="Apellido" required>
+                </div>
+            </div>
+            <div>
+                <input type="text" class="input-text" placeholder="Celular" id="celular">
+            </div>
+            <div>
+                <label>Género:</label>
+                <label for="genero-masculino">
+                    <input type="radio" id="genero-masculino" name="genero" value="MASCULINO"> Masculino
+                </label>
+                <label for="genero-femenino">
+                    <input type="radio" id="genero-femenino" name="genero" value="FEMENINO"> Femenino
+                </label>
+            </div>
+            <div class="tutor-container">
+                <label class="tutor">¿Tiene tutor?</label>
+                <label for="tutor-si">
+                    <input type="radio" id="tutor-si" name="tutor" value="SI"> Sí
+                </label>
+                <label for="tutor-no">
+                    <input type="radio" id="tutor-no" name="tutor" value="NO"> No
+                </label>
+                <div class="supervisor-container">
+                    <input type="text" id="supervisor-search" placeholder="¿Quién?">
+                    <select id="supervisor"></select>
+                </div>
+            </div>
+            <fieldset class = "field-set">
+                <legend class = "legend">Tareas</legend>
+                <div id="tasks">
+
+                    <div class="category">
+                        <h4>Notebook</h4>
+                        <div class="task-container">
+                            <div class="task-item">
+                                <input type="checkbox" id="task-1" value="1">
+                                <label for="task-1">Formateo e instalación de SO</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-2" value="2">
+                                <label for="task-2">Limpieza Física</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-3" value="3">
+                                <label for="task-3">Desinfeccion de virus</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-4" value="4">
+                                <label for="task-4">Diagnosticar</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-5" value="5">
+                                <label for="task-5">Cambio de partes</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category">
+                        <h4>Pc de escritorio</h4>
+                        <div class="task-container">
+                            <div class="task-item">
+                                <input type="checkbox" id="task-6" value="6">
+                                <label for="task-6">Formateo e instalación de SO</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-7" value="7">
+                                <label for="task-7">Limpieza Física</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-8" value="8">
+                                <label for="task-8">Desinfeccion de virus</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-9" value="9">
+                                <label for="task-9">Diagnosticar</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-10" value="10">
+                                <label for="task-10">Cambio de partes</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category">
+                        <h4>Celulares</h4>
+                        <div class="task-container-cell">
+                            <div class="task-item-cell">
+                                <input type="checkbox" id="task-11" value="11">
+                                <label for="task-11">Flasheo</label>
+                            </div>
+                            <div class="task-item-cell">
+                                <input type="checkbox" id="task-12" value="12">
+                                <label for="task-12">Cambio de bateria</label>
+                            </div>
+                            <div class="task-item-cell">
+                                <input type="checkbox" id="task-13" value="13">
+                                <label for="task-13">Cambio de pantalla</label>
+                            </div>
+                            <div class="task-item-cell">
+                                <input type="checkbox" id="task-14" value="14">
+                                <label for="task-14">Cambio de vidrio templado</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category">
+                        <h4>Atencion al cliente</h4>
+                        <div class="task-container">
+                            <div class="task-item">
+                                <input type="checkbox" id="task-15" value="15">
+                                <label for="task-15">Recibir nuevos clientes</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-16" value="16">
+                                <label for="task-16">Presupuestar equipos</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-17" value="17">
+                                <label for="task-17">Venta de equipos</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task-18" value="18">
+                                <label for="task-18">Compra a proveedores</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="button-container">
+                <button id="edit-employee" class="button">Editar</button>
+                <button type="submit" id="save-employee" class="button">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

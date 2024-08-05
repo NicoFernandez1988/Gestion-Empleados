@@ -1,0 +1,195 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-panel {
+    padding: 20px;
+    width: 20%;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-panel {
+    padding: 20px;
+    width: 70%;
+}
+
+#employee-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+#employee-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button i {
+    font-size: 15px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+    border: 1px solid #a9a9a9;
+}
+
+#save-employee.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-text {
+    width: 23.4%;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+#search{
+    width: 81%;
+}
+
+.name-container, .tutor-container {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.tutor-container {
+    align-items: center;
+}
+
+.supervisor-container {
+    display: flex;
+    margin-left: 10px;
+    margin-top:12px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 13px;
+    margin-top:-7px;
+}
+
+h2 {
+    margin-bottom: 1px;
+}
+
+#supervisor{
+    margin-left: 10px;
+}
+
+.tutor{
+    margin-bottom: 10px;
+}
+
+.name-container {
+    display: flex;
+    gap: 10px;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input, form select, form fieldset {
+    margin-bottom: 10px;
+}
+
+.category h3 {
+    margin-bottom: 5px;
+}
+
+.category ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.category ul li {
+    margin-bottom: 2px;
+}
+
+.category {
+    margin-bottom: -8px;
+    margin-top: -15px
+}
+
+.legend {
+    margin-bottom: 2px;
+}
+
+.task-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.task-container-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.task-item-cell {
+    flex: 1 1 20px;
+    margin: -5px;
+}
+
+.task-item {
+    flex: 1 1 20px;
+    margin: 1px;
+}
+
+.task-item label {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.category h4 {
+    margin-bottom: 1px;
+}
+
+
