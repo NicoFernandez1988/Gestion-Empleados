@@ -1,6 +1,7 @@
 package com.Empleados.Employees.application;
 
 
+import com.Empleados.Employees.application.exceptions.TaskNotFoundException;
 import com.Empleados.Employees.domain.Task;
 import com.Empleados.Employees.domain.TaskCategory;
 import com.Empleados.Employees.domain.dto.TaskDTO;
@@ -39,11 +40,11 @@ public class TaskService implements TaskInputPort {
     }
 
     @Override
-    public TaskDTO getTaskById(Long id) {
+    public TaskDTO getTaskById(Long id) throws TaskNotFoundException {
         logger.info("Fetching task with id: {}", id);
         return taskRepositoryOuputPort.findById(id)
                 .map(this::convertToDTO)
-                .orElse(null);
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
     }
 
     @Override
@@ -79,7 +80,7 @@ public class TaskService implements TaskInputPort {
                 .orElse(null);
     }
 
-    private TaskDTO convertToDTO(Task task) {
+    public TaskDTO convertToDTO(Task task) {
         TaskDTO dto = new TaskDTO();
         dto.setId(task.getId());
         dto.setDescription(task.getDescription());
@@ -87,7 +88,7 @@ public class TaskService implements TaskInputPort {
         return dto;
     }
 
-    private Task convertToEntity(TaskDTO dto) {
+    public Task convertToEntity(TaskDTO dto) {
         Task task = new Task();
         task.setId(dto.getId());
         task.setDescription(dto.getDescription());
