@@ -1,14 +1,11 @@
 package com.Empleados.Employees.service;
 
 import com.Empleados.Employees.application.TaskService;
-import com.Empleados.Employees.application.exceptions.EmployeeNotFoundException;
 import com.Empleados.Employees.application.exceptions.TaskNotFoundException;
 import com.Empleados.Employees.domain.Employee;
 import com.Empleados.Employees.domain.Task;
 import com.Empleados.Employees.domain.TaskCategory;
-import com.Empleados.Employees.domain.dto.EmployeeDTO;
 import com.Empleados.Employees.domain.dto.TaskDTO;
-import com.Empleados.Employees.domain.enums.Gender;
 import com.Empleados.Employees.infrastructure.output.port.TaskRepositoryOuputPort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
