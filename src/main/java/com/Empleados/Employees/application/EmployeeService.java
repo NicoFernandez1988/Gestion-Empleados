@@ -153,7 +153,13 @@ public class EmployeeService implements EmployeeInputPort {
 
     public Employee findSupervisorById(Long id){
         logger.info("Fetching supervisor with id: {}", id);
-        return employeeRepositoryOutputPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Supervisor not found"));
+        try {
+            return employeeRepositoryOutputPort.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Supervisor not found"));
+        }catch (Exception e){
+            logger.error("Error fetching employee");
+            throw e;
+        }
+
     }
 }
