@@ -34,50 +34,86 @@ public class TaskService implements TaskInputPort {
     @Override
     public List<TaskDTO> getAllTasks() {
         logger.info("Fetching all tasks");
-        return taskRepositoryOuputPort.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+        try {
+            return taskRepositoryOuputPort.findAll().stream()
+                    .map(this::convertToDTO)
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            logger.error("Error fetching tasks. {}", e.getMessage());
+            throw e;
+        }
+
     }
 
     @Override
     public TaskDTO getTaskById(Long id) throws TaskNotFoundException {
         logger.info("Fetching task with id: {}", id);
-        return taskRepositoryOuputPort.findById(id)
-                .map(this::convertToDTO)
-                .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
+        try {
+            return taskRepositoryOuputPort.findById(id)
+                    .map(this::convertToDTO)
+                    .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
+        }catch (TaskNotFoundException e){
+            logger.error("Error fetching task: {}", e.getMessage());
+            throw e;
+        }
+
     }
 
     @Override
     public void saveTask(TaskDTO taskDTO) {
         logger.info("Creating task");
-        Task task = convertToEntity(taskDTO);
-        taskRepositoryOuputPort.save(task);
+        try {
+            Task task = convertToEntity(taskDTO);
+            taskRepositoryOuputPort.save(task);
+        }catch (Exception e) {
+            logger.error("An unexpected error occurred during the save task operation: {}", e.getMessage());
+            throw new RuntimeException("Unexpected error occurred while saving task", e);
+        }
+
     }
 
     @Override
     public Map<String, List<TaskDTO>> getCategorizedTasks() {
         logger.info("Fetching categorized tasks");
-        List<TaskDTO> allTasks = getAllTasks();
-        return Map.of(
-                "Pc de escritorio:", filterTasksByCategory(allTasks, "Pc de escritorio"),
-                "Notebook:", filterTasksByCategory(allTasks, "Notebook"),
-                "Celulares:", filterTasksByCategory(allTasks, "Celulares"),
-                "Atencion al cliente:", filterTasksByCategory(allTasks, "Atencion al cliente")
-        );
+        try {
+            List<TaskDTO> allTasks = getAllTasks();
+            return Map.of(
+                    "Pc de escritorio:", filterTasksByCategory(allTasks, "Pc de escritorio"),
+                    "Notebook:", filterTasksByCategory(allTasks, "Notebook"),
+                    "Celulares:", filterTasksByCategory(allTasks, "Celulares"),
+                    "Atencion al cliente:", filterTasksByCategory(allTasks, "Atencion al cliente")
+            );
+        }catch (Exception e){
+            logger.error("Error fetching categorized tasks: {}", e.getMessage());
+            throw new RuntimeException("Unexpected error occurred while fetching categorized tasks", e);
+        }
+
     }
 
     private List<TaskDTO> filterTasksByCategory(List<TaskDTO> tasks, String category) {
         logger.info("Creating task with category: {}", category);
-        return tasks.stream()
-                .filter(task -> category.equals(getCategoryNameById(task.getCategoryId())))
-                .collect(Collectors.toList());
+        try {
+            return tasks.stream()
+                    .filter(task -> category.equals(getCategoryNameById(task.getCategoryId())))
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            logger.error("Error creating task with category: {}", e.getMessage());
+            throw new RuntimeException("Unexpected error occurred while creating categorized task", e);
+        }
+
     }
 
     private String getCategoryNameById(Long categoryId) {
         logger.info("Fetching category with id: {}", categoryId);
-        return taskCategoryOutputRepository.findById(categoryId)
-                .map(TaskCategory::getName)
-                .orElse(null);
+        try {
+            return taskCategoryOutputRepository.findById(categoryId)
+                    .map(TaskCategory::getName)
+                    .orElse(null);
+        }catch (Exception e){
+            logger.error("Error fetching category: {}", e.getMessage());
+            throw new RuntimeException("Error occurred fetching category with id", e);
+        }
+
     }
 
     public TaskDTO convertToDTO(Task task) {
